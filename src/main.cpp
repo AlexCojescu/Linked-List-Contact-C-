@@ -25,7 +25,7 @@ void insertAtEnd(string name, string phone){
 //otherwise we have to consider second case
 
     if(head == NULL){
-        head == newNode;   //checks if list is empty
+        head = newNode;    //checks if list is empty
 }
 else {                     //if list is empty than add node to existing list
     node* temp = head;
@@ -58,11 +58,122 @@ void displayContact(){             //if null is empty it prints a message saying
 }
 
 
+//function to search contact
+
+void searchContact(){
+    string name;
+    bool found = false;    //assuming contact is not found, if contact is found, it is set to true
+
+    cout<<"\nEnter the name that you want to search: ";     //user enters name they are looking for by storing input in variable
+    cin>>name;
+
+    if (head == NULL){                                      //if the head pointer is NULL, the list is empty so theres nothing to search
+        cout<<"\nContact list is empty!";
+}
+else {
+    node* temp = head;
+    while(temp != NULL){                                    //iterates through every contact node in list
+        if(name == temp -> contact_name){                   //compares the name the user entered with the name stored in current node
+            cout<<"\nContact Found!";                            //if theres a match
+            cout<<"\nContact Name:"<<temp -> contact_name;
+            cout<<"\nContact Phone:"<<temp -> contact_phone;    
+            found = true;
+            break;
+
+        }
+        temp = temp -> next;
+    }
+    if (found == false){                                    //if theres no match
+        cout<<"\nContact Not Found!";
+    }
+}
+cout<<endl;
+
+}
 
 
+//function to delete a contact
 
+void deleteContact(){
+    if(head == NULL){
+        cout<<"\nContact List is Empty";
+        return;
+
+}
+    string name;
+
+    node* temp = head;
+    node* prev = NULL;
+
+    cout<<"\nEnter the contact name that you want to delete";
+    cin>>name;
+
+    //Case 1: if node we are looking for is the first node. If we want to delete the first node in the list
+
+    if (temp != NULL && temp -> contact_name == name){  
+        head = temp -> next;
+        delete head;
+        cout<<"\nCnotact deleted succesfully!";
+        return;
+    }
+
+
+    //Case 2: if it is any othe rnode in list
+
+    bool found = false;
+    while (temp != NULL){
+        if (temp -> contact_name == name){
+            found = true;
+            prev -> next = temp -> next;
+            delete temp;
+            cout<<"\nContact deleted succesfully!";
+            break;
+        }
+        prev = temp;
+        temp = temp -> next;
+    }
+
+    if (found == false){
+        cout<<"\nContact Not Found!";
+
+    }
+
+    cout<<endl;
+}
 
 int main(){
+    string name, phone;
+    int choice;
+
+    do {
+        cout<<"\n--MAIN MENU--";
+        cout<<"\n1. Add a new contact";
+        cout<<"\n2. Display all Contacts";
+        cout<<"\n3. Search a Contact";
+        cout<<"\n4. Delete a Contact";
+        cout<<"\n5. Exit";
+        cout<<"\nEnter your choice:";
+        cin>>choice;
+
+        switch(choice){
+            case 1: cout<<"\nEnter the Contact Name: ";
+                    cin>>choice;
+                    cout<<"\nEnter the Phone Number: ";
+                    cin>>phone;
+                    insertAtEnd(name, phone);
+                    break;
+            case 2: displayContact();
+                    break;
+            case 3: searchContact();
+                    break;
+            case 4: deleteContact();
+                    break;
+            case 5: cout<<"\nExiting the program...";
+                    exit(0);
+            default: cout<<"\nInvalid Choice... Please Try Again";
+        }
+
+    } while (choice != 5);
 
 return 0;
 }
