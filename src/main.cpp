@@ -157,7 +157,7 @@ int main(){
 
         switch(choice){
             case 1: cout<<"\nEnter the Contact Name: ";
-                    cin>>choice;
+                    cin>>name;
                     cout<<"\nEnter the Phone Number: ";
                     cin>>phone;
                     insertAtEnd(name, phone);

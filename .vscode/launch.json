@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "C/C++ Debug (Integrated Terminal)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/a.out", // Verify this path is correct
+            "args": [],
+            // Set these two keys:
+            "externalConsole": false,
+            "console": "integratedTerminal", // <-- THIS is the key change
+            
+            // ... (rest of your settings, like 'MIMode', 'miDebuggerPath', etc.)
+        }
+    ]
+}
